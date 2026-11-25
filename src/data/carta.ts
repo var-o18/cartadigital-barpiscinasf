@@ -34,10 +34,12 @@ const img = (id: string) => `https://images.unsplash.com/photo-${id}?w=800&q=75&
 const P = {
   // Entrantes
   olivas: img("1708949124687-8de24592d365"),
-  croquetas: img("1683694062041-cc62c5390b13"),
+  croquetasJamon: img("1713517915303-ae3b3429f939"),
+  croquetasPollo: img("1683694062041-cc62c5390b13"),
   tortilla: img("1639669794539-952631b44515"),
   panTomate: img("1609015746380-571227e2bc72"),
-  ensaladilla: img("1760445530539-0cf729cc9dd1"),
+  ensaladillaRusa: img("1735132672415-3851da13d5ea"),
+  ensaladillaBoca: img("1612949060306-4c298ad7f34c"),
   magra: img("1752627559682-9b7f0f0ded4e"),
   patatasFritas: img("1585109649139-366815a0d713"),
   conejo: img("1667396702543-a239efa7a7f2"),
@@ -150,9 +152,11 @@ const SEED: CategorySeed[] = [
     icon: "Soup",
     products: [
       { name: "Patatas bravas", price: 5.5, image: P.bravas, featured: true },
-      { name: "Croquetas de jamón o pollo", description: "Precio por unidad.", price: 1.5, image: P.croquetas },
+      { name: "Croquetas de jamón", description: "Precio por unidad.", price: 1.5, image: P.croquetasJamon },
+      { name: "Croquetas de pollo", description: "Precio por unidad.", price: 1.5, image: P.croquetasPollo },
       { name: "Pincho de tortilla", price: 3, image: P.tortilla },
-      { name: "Ensaladilla rusa o de boca", price: 3.5, image: P.ensaladilla },
+      { name: "Ensaladilla rusa", price: 3.5, image: P.ensaladillaRusa },
+      { name: "Ensaladilla de boca", price: 3.5, image: P.ensaladillaBoca },
       { name: "Pan con tomate y alioli", price: 3.5, image: P.panTomate },
       { name: "Patatas fritas", price: 4.5, image: P.patatasFritas },
       { name: "Magra con tomate", price: 4, image: P.magra },
