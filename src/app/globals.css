@@ -1,26 +1,188 @@
 @import "tailwindcss";
 
+/* Carta nocturna y sobria: negro, superficies grises, bordes finos y dorado como acento. */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #111111;
+  --foreground: #ededed;
+  --surface: #1a1a1a;
+  --line: #2a2a2a;
+  --muted: #9b9b9b;
+  --gold: #c8a464;
+  --gold-dim: rgba(200, 164, 100, 0.35);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-surface: var(--surface);
+  --color-line: var(--line);
+  --color-muted: var(--muted);
+  --color-gold: var(--gold);
+  --color-gold-dim: var(--gold-dim);
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-josefin);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  color-scheme: dark;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+}
+
+::selection {
+  background: var(--gold);
+  color: var(--background);
+}
+
+:focus-visible {
+  outline: 1px solid var(--gold);
+  outline-offset: 2px;
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+@keyframes sheet-up {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.animate-sheet-up {
+  animation: sheet-up 0.28s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.animate-fade-in {
+  animation: fade-in 0.2s ease-out;
+}
+/* ---- Entrada de la carta ---- */
+@keyframes palm-in-left {
+  from {
+    opacity: 0;
+    transform: translateX(-90px) rotate(-8deg);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes palm-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(90px) rotate(8deg);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes sway-left {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(1deg);
+  }
+}
+@keyframes sway-right {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(-1deg);
+  }
+}
+@keyframes logo-in {
+  from {
+    opacity: 0;
+    transform: scale(0.88);
+    filter: blur(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+@keyframes line-in {
+  from {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+  to {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.banner-palm-left {
+  animation: palm-in-left 1.4s cubic-bezier(0.16, 0.84, 0.24, 1) 0.1s both;
+}
+.banner-palm-right {
+  animation: palm-in-right 1.4s cubic-bezier(0.16, 0.84, 0.24, 1) 0.1s both;
+}
+.banner-sway-left {
+  animation: sway-left 7s ease-in-out 1.5s infinite;
+}
+.banner-sway-right {
+  animation: sway-right 8s ease-in-out 1.5s infinite;
+}
+.banner-logo {
+  animation: logo-in 1.1s cubic-bezier(0.2, 0.8, 0.2, 1) 0.35s both;
+}
+.banner-line {
+  animation: line-in 1.2s cubic-bezier(0.65, 0, 0.35, 1) 0.6s both;
+}
+.banner-season {
+  animation: fade-in 0.8s ease-out 1.1s both;
+}
+/* Contenido de la carta: sube con un fundido, escalonado con --d. */
+.reveal {
+  animation: rise 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) var(--d, 0.9s) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-sheet-up,
+  .animate-fade-in,
+  .banner-palm-left,
+  .banner-palm-right,
+  .banner-sway-left,
+  .banner-sway-right,
+  .banner-logo,
+  .banner-line,
+  .banner-season,
+  .reveal {
+    animation: none;
+  }
+  * {
+    scroll-behavior: auto !important;
+    transition-duration: 0s !important;
+  }
 }
